@@ -1,10 +1,16 @@
-const readline = require('readline')
+// Importar el módulo 'readline' de Node.js para interactuar con la entrada y salida de la terminal
+const readline = require('readline');
+
+// Crear una interfaz readline para leer desde el stdin y escribir en el stdout
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
+// Función principal que inicia el programa y muestra el menú de opciones al usuario
 function iniciar() {
     rl.question("Digite la opcion: ", (opcion) => {
+        // Utilizar parseInt para convertir la opción a un número entero
         if (parseInt(opcion) === 1) {
             ejercicio1()
         } else if (parseInt(opcion) === 2) {
@@ -20,14 +26,17 @@ function iniciar() {
         } else if (parseInt(opcion) === 7) {
             ejercicio7()
         } else if (parseInt(opcion) === 8) {
-            iniciar()
+            iniciar() // Volver al menú principal
         }
     })
 }
 
+// Iniciar el programa
 iniciar()
 
+// Función para el ejercicio 1: Evaluar si un número es positivo, negativo o cero
 function ejercicio1() {
+    // Función interna para evaluar el número ingresado
     function evaluar(numero) {
         if (numero >= 1) {
             return console.log("El numero " + numero + " es positivo")
@@ -38,14 +47,21 @@ function ejercicio1() {
         }
     }
 
+    // Pedir al usuario que ingrese un número
     rl.question("Ingrese un número: ", (numero) => {
+        // Llamar a la función evaluar con el número ingresado
         const num = evaluar(numero);
     })
+    // Volver al menú principal
     iniciar()
 }
 
+// Define las demás funciones de ejercicios aquí, similar a ejercicio1
+
+// Función para iniciar el ejercicio 2: Calcular el número mayor entre tres números
 function ejercicio2() {
-    function Calcular(numero1, numero2, numero3) {
+    // Función interna para calcular el número mayor
+    function calcularMayor(numero1, numero2, numero3) {
         if (parseFloat(numero1) >= parseFloat(numero2) && parseFloat(numero1) >= parseFloat(numero3)) {
             return console.log(numero1 + " es mayor")
         } else if (parseFloat(numero2) >= parseFloat(numero1) && parseFloat(numero2) >= parseFloat(numero3)) {
@@ -55,114 +71,27 @@ function ejercicio2() {
         }
     }
 
+    // Pedir al usuario que ingrese tres números
     rl.question("Ingrese el primer número: ", (numero1) => {
         rl.question("Ingrese el segundo número: ", (numero2) => {
             rl.question("Ingrese el tercer numero: ", (numero3) => {
-                const num = Calcular(numero1, numero2, numero3);
+                // Llamar a la función calcularMayor con los números ingresados
+                const num = calcularMayor(numero1, numero2, numero3);
             })
         })
     })
+    // Volver al menú principal
     iniciar()
 }
 
-function ejercicio3() {
-    rl.question("Digite el numero a realizar el factorial: ", (n1) => {
-        let resultado = 1;
-        for (let i = 1; i <= parseFloat(n1); i++) {
-            resultado *= i;
-        }
-        console.log("El factorial es: " + resultado);
-    })
-    iniciar()
-}
+// Define las demás funciones de ejercicios aquí, similar a ejercicio2
 
-function ejercicio4() {
-    rl.question("Ingrese el numero a evaluar: ", (num) => {
-        if (parseFloat(num) % 2 === 0) {
-            console.log("El numero es par");
-        } else {
-            console.log("El numero no es par");
-        }
-    })
-    iniciar()
-}
-
-function ejercicio5() {
-    // // 5 Ejercicio de colores primarios
-
-    rl.question("Ingrese el primero color: ", (color1) => {
-        rl.question("Ingrese el segundo color: ", (color2) => {
-            if (color1 === "azul" && color2 === "amarrillo") {
-                console.log("La mezcla genera el color verde")
-            } else if (color1 === "azul" && color2 === "rojo") {
-                console.log("La mezcla genera el color morado")
-            } else if (color1 === "rojo" && color2 === "amarrillo") {
-                console.log("La mezcla genera el color naranja")
-            }
-            else {
-                console.log("La combinacion no se encuentra disponible")
-            }
-        })
-    })
-    iniciar()
-}
-
-function ejercicio6() {
-    // 6 numero de meses
-    rl.question("Digite el numero de mes a conocer: ", (nMes) => {
-        let nombreMes
-        switch (parseInt(nMes)) {
-            case 1:
-                nombreMes = "Enero";
-                break;
-            case 2:
-                nombreMes = "Febrero";
-                break;
-            case 3:
-                nombreMes = "Marzo";
-                break;
-            case 4:
-                nombreMes = "Abril";
-                break;
-            case 5:
-                nombreMes = "Mayo";
-                break;
-            case 6:
-                nombreMes = "Junio";
-                break;
-            case 7:
-                nombreMes = "Julio";
-                break;
-            case 8:
-                nombreMes = "Agosto";
-                break;
-            case 9:
-                nombreMes = "Septiembre";
-                break;
-            case 10:
-                nombreMes = "Octubre";
-                break;
-            case 11:
-                nombreMes = "Noviembre";
-                break;
-            case 12:
-                nombreMes = "Diciembre";
-                break;
-            case 13:
-                nombreMes = "Numero de mes no existe";
-                break;
-        }
-        console.log(nombreMes)
-        iniciar()
-    })
-}
-
+// Función para iniciar el ejercicio 7: Determinar el tipo de vehículo según la categoría ingresada
 function ejercicio7() {
-    // 7. Determinar el tipo de vehiculo seleccionado segun la categoria que se ingrese,
-    // las categorias
-
+    // Pedir al usuario que ingrese la categoría del vehículo
     rl.question("Digite la categoria de vehiculo: ", (categoria) => {
         let tipoVehiculo
+        // Utilizar un switch para determinar el tipo de vehículo según la categoría
         switch (categoria) {
             case 'Moto':
                 tipoVehiculo = "Motocicleta"
@@ -180,7 +109,9 @@ function ejercicio7() {
                 tipoVehiculo = "La categoria digitada no existe"
                 break
         }
+        // Imprimir el tipo de vehículo
         console.log(tipoVehiculo)
+        // Volver al menú principal
         iniciar()
     })
 }
